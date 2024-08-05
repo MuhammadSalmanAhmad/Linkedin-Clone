@@ -1,0 +1,51 @@
+/* Reset default margin and padding for body and html */
+
+
+.header {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom: 0.1px solid gray; /* Ensure the border is visible */
+    margin: 0; /* Remove any default margin */
+}
+
+.header_left {
+    display: flex;
+    align-items: center;
+}
+
+.header_left > img {
+    object-fit: contain;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.header_search {
+    display: flex;
+    align-items: center;
+    background-color: #e8f3ff;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.header_search > input {
+    border: none;
+    outline: none; /* Remove the default border and outline */
+    padding: 5px;
+    font-size: 14px;
+    background-color: transparent; /* Make sure the background color does not interfere */
+    width: 200px; /* Ensure enough width for the input */
+    cursor: text; /* Ensure the cursor is correct for text input */
+}
+
+.header_right {
+    display: flex;
+    align-items: center;
+}
+
+.header_right a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: gray;
+}

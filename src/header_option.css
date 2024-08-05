@@ -1,0 +1,100 @@
+/* Reset default margin and padding for body and html */
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.header {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 0 20px; /* Adjust padding to remove top and bottom space */
+    border-bottom: 0.1px solid gray; /* Ensure the border is visible */
+    margin: 0; /* Remove any default margin */
+}
+
+.header_left {
+    display: flex;
+    align-items: center;
+}
+
+.header_left > img {
+    object-fit: contain;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.header_search {
+    display: flex;
+    align-items: center;
+    background-color: #e8f3ff;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.header_search > input {
+    border: none;
+    outline: none; /* Remove the default border and outline */
+    padding: 5px;
+    font-size: 14px;
+    background-color: transparent; /* Make sure the background color does not interfere */
+    width: 200px; /* Ensure enough width for the input */
+    cursor: text; /* Ensure the cursor is correct for text input */
+}
+
+.header_right {
+    display: flex;
+    align-items: center;
+}
+
+.header_right a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: gray;
+}
+
+/* Header Option Styling */
+.headerOption {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+    margin: 0 20px; /* Adjust margin to control spacing */
+    padding: 10px 0; /* Add padding for vertical alignment */
+}
+
+.headerOption:hover {
+    background-color: #f3f2ef;
+    border-radius: 10px;
+    color: #000;
+}
+
+.headerOption > h3 {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    color: gray;
+    font-size: small;
+}
+
+.headerOption_icon {
+    padding: 10px;
+    color: gray;
+    align-content: center;
+    font-size: 24px; /* Ensure the icon size is appropriate */
+}
+
+.title{
+    font-size: 12px;
+    color: gray;
+    font-weight: 400;
+}
+
+.avatar{
+    object-fit: contain;
+    width: 25px !important;
+    height: 25px !important;
+    
+  }
