@@ -6,6 +6,7 @@ import Test from './side';
 import Sidebar from './Sidebar';
 import me from './assets/me.png'
 import Feed from './HomeFeed/Feed'
+import Post from './HomeFeed/Post';
 
 function App() {
   return (
@@ -13,7 +14,11 @@ function App() {
       <Header></Header>
       <div className='app_body' >
         <Sidebar avatar={me}></Sidebar>
-        <Feed></Feed>
+        <Feed>
+          
+        </Feed>
+        
+        
       
       </div>
     </div>

@@ -25,7 +25,7 @@ function Header() {
                 <HeaderOptions title='Home' Icon={homeIcon}></HeaderOptions>
                 <HeaderOptions title='My network' Icon={Network}></HeaderOptions>
                 <HeaderOptions title='Jobs' Icon={job_icon}></HeaderOptions>
-                <HeaderOptions tittle='Messages' Icon={Messaging}></HeaderOptions>
+                <HeaderOptions tittle='messages' Icon={Messaging}></HeaderOptions>
                 <HeaderOptions title= 'Notifications' Icon={Notifications}></HeaderOptions>
                 <HeaderOptions title='ME'avatar={photo}></HeaderOptions>
             
