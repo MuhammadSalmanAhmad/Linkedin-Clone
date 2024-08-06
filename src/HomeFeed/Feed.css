@@ -1,0 +1,26 @@
+.Feed{
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    background-color: whitesmoke;
+    border: 1px solid lightgray;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    width: 400px;
+
+}
+
+.input{
+    display: flex;
+    padding: 10px;
+    margin: 3px 3px 3px 3px;
+    align-self: center;
+}

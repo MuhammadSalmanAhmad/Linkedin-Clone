@@ -1,0 +1,11 @@
+.app{
+    display: flex;
+    flex-direction: column;
+    
+    background-color:white
+}
+.app_body{
+    display: flex;
+    height: 100vh;
+    flex: 1;
+}
