@@ -14,7 +14,7 @@ import { useEffect } from 'react';
 import { db } from '../Firebase';
 import { addDoc,collection, getDocs } from 'firebase/firestore';
 import { onSnapshot } from 'firebase/firestore';
-import { doc } from "firebase/firestore";
+import { doc,query, orderBy } from "firebase/firestore";
 
 
 export default function Feed(){
@@ -22,23 +22,30 @@ export default function Feed(){
     let [user_input,SetInput]=useState('')
     let [posts,setPosts]=useState([]);
 
+
+    //Firebase code to get data from backend
+ 
+    const getPosts = async () => {
+        const collectionRef = collection(db, 'posts');
+        const q = query(collectionRef, orderBy('timestamp', 'desc')); // Order by timestamp in descending order
+        const querySnapshot = await getDocs(q);
+        const postData = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          data: doc.data(),
+        }));
+        setPosts(postData);
+      };
+//Maintained hook to automatically get data from backend as Feed component mounts/loads 
     useEffect(() => {
-        // Firebase listener with cleanup
-        const getPosts = async () => {
-            const querySnapshot = await getDocs(collection(db, 'posts'));
-            const postData = querySnapshot.docs.map((doc) => ({
-              id: doc.id,
-              data:doc.data(),
-            }));
-            setPosts(postData);
-          };
-      
+        
           getPosts();
        
     }, []);
    
+    //Function to send post to backend
     async function sendPost(e)  {
         e.preventDefault()
+    
       
         try {
             const docRef = await addDoc(collection(db, "posts"), {
@@ -47,6 +54,9 @@ export default function Feed(){
                 timestamp: new Date().getTime(),
             });
             alert('POST SENT')
+             // Clear the input field
+            SetInput('');
+            getPosts() 
             console.log("Document written with ID: ", docRef.id);
           } catch (e) {
             console.error("Error adding document: ", e);
@@ -84,7 +94,9 @@ export default function Feed(){
             </div>
             
             {/*Post*/}
-            <Post message={user_input} ></Post>
+            {posts.map((post)=>{
+                return <Post key={post.id} message={post.data.message} author={post.data.name}></Post>
+            })}
           
             
         </div>
