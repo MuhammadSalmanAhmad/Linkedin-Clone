@@ -15,6 +15,8 @@
     height: fit-content;
     width: fit-content;
     flex: 0.6;
+    align-items: flex-start; /* Replace 'start' with 'flex-start' */
+    justify-content: flex-start;
 
 }
 
@@ -24,6 +26,8 @@
     padding: 10px;
     margin: 3px 3px 3px 3px;
     align-self: center;
+    align-items: flex-start; /* Replace 'start' with 'flex-start' */
+    justify-content: flex-start; 
 }
 
 .input_container{
@@ -118,6 +122,17 @@ border-radius: 10px;
     margin-left: 10px;
 }
 .Post_body{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.Post_React{
+    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    padding: 10px;
     margin-left: 10px;
     margin-right: 10px;
 }

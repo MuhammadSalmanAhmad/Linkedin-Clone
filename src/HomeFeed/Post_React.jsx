@@ -7,10 +7,10 @@ import { purple } from "@mui/material/colors";
 
 
 
-export default function MediaType({Icon,text,color}){
+export default function PostReact({Icon,text,color}){
     return(
         <div className="media-type">
-            {Icon && <Icon style={{color:color}}></Icon>}
+            {Icon && <Icon sx={{color:color}}></Icon>}
             <h3 style={{
                 fontWeight:"normal",
                 marginLeft:10

@@ -15,11 +15,8 @@ function App() {
       <div className='app_body' >
         <Sidebar avatar={me}></Sidebar>
         <Feed>
-          
         </Feed>
         
-        
-      
       </div>
     </div>
     
