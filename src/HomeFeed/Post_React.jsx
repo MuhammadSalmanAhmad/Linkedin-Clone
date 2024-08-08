@@ -5,8 +5,6 @@ import { Avatar, CardMedia, Icon ,Button} from "@mui/material";
 import { purple } from "@mui/material/colors";
 
 
-
-
 export default function PostReact({Icon,text,color}){
     return(
         <div className="media-type">
