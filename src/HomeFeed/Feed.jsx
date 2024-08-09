@@ -15,14 +15,22 @@ import { db } from '../Firebase';
 import { addDoc,collection, getDocs } from 'firebase/firestore';
 import { onSnapshot } from 'firebase/firestore';
 import { doc,query, orderBy } from "firebase/firestore";
+import { useSelector } from 'react-redux';
+import { selectUser } from '../features/userSlice';
 
 
 export default function Feed(){
-   
+    let [user_name,SetUserName]=useState('')
     let [user_input,SetInput]=useState('')
     let [posts,setPosts]=useState([]);
 
+    let user= useSelector(selectUser)
 
+    useEffect(()=>{
+        SetUserName(
+            user_name=user.displayName
+        )
+    },[])
     //Firebase code to get data from backend
  
     const getPosts = async () => {
@@ -45,11 +53,10 @@ export default function Feed(){
     //Function to send post to backend
     async function sendPost(e)  {
         e.preventDefault()
-    
       
         try {
             const docRef = await addDoc(collection(db, "posts"), {
-                name:'salman',
+                name:user_name,
                 message: user_input,
                 timestamp: new Date().getTime(),
             });

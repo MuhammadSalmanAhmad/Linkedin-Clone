@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './sidebar.css'
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -8,17 +8,30 @@ import me from './assets/me.png'
 import { grey } from "@mui/material/colors";
 import Network from '@mui/icons-material/SupervisorAccount'
 import Recent from "./sidebar_bottom";
+import { useSelector } from "react-redux";
+import { selectUser } from "./features/userSlice";
 
 
 
 export default function Sidebar({avatar}) {
     let [user_name, SetName] = useState("salman")
     let [user_email, setEmail] = useState("isalman.ahmad01@gmail.com")
+    const user = useSelector(selectUser)
+    
+
+    useEffect(()=>{
+        SetName(
+           user_name= user.displayName
+        )
+        setEmail(
+            user_email= user.email
+        )
+    },[])
     return (
         <div className="sidebar">
             <div className="sidebar_top">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTvk0gIBR6oa0q2oA974eA7fs7IgY9G_YeSQ&s"></img>
-                <Avatar src={avatar} sx={{
+                <Avatar src={user.photoUrl} sx={{
                     width: 100,
                     height: 100,
                     borderRadius: 50,

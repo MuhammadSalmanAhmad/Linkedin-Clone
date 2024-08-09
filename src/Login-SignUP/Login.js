@@ -2,13 +2,24 @@ import React, { useState } from "react";
 import './Login.css';
 import { Button, TextField } from "@mui/material";
 import { auth } from "../Firebase";
+import 'firebase/auth';
+import { signInWithEmailAndPassword , updateProfile } from "firebase/auth";
+import { useSelector , useDispatch} from "react-redux";
+import { selectUser } from "../features/userSlice";
+import { login ,logout} from "../features/userSlice";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 
 export default function Login() {
 
+
     let [fullname, setInput] = useState('');
     let [email, setEmail] = useState('');
     let [password, setPassword] = useState('');
+    let [photoURL,setPhoto]=useState('')
+
+    const user= useSelector(selectUser)
+    const dispatch = useDispatch()
 
     function showInput(event) {
         console.log('showing input');
@@ -17,15 +28,48 @@ export default function Login() {
 
     const loginToApp=(e)=>{
         e.preventDefault();
-        auth.signInWithEmailAndPassword(email,password)
+        signInWithEmailAndPassword(auth, email, password).then(
+            userAuth=>{
+                dispatch(login({
+                    email: userAuth.user.email,
+                    uid: userAuth.user.uid,
+                    displayName: userAuth.user.displayName,
+                    photoUrl: userAuth.user.photoURL,
+                }))
+            }
+        ).catch((error) => {
+            alert(error.message)}
+        )
+      
     }
     const Register= ()=>{
         if (!fullname || !email || password === null) {
             alert('kindly enter the required details');
         }
-        auth.createUserWithEmailAndPassword(email,password).then(
-            (userAuth)=>{}
-        )
+        createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            const user = userCredential.user;
+            
+            // Update the user's profile
+            return updateProfile(user, {
+                displayName: fullname,
+            });
+        })
+        .then(() => {
+            // Dispatch the login action after profile is updated
+            dispatch(
+                login({
+                    email: auth.currentUser.email,
+                    uid: auth.currentUser.uid,
+                    displayName: fullname,
+                    photoUrl: photoURL,
+
+                })
+            );
+        })
+        .catch((error) => {
+            alert(error.message);
+        });
     }
 
     return (
@@ -57,7 +101,16 @@ export default function Login() {
                     value={password} 
                     onChange={(e) => setPassword(e.target.value)} // Set the input state on change
                 />
-                <Button variant="contained" onClick={showInput}>Login</Button>
+
+<TextField 
+                    id="outlined-basic" 
+                    label="PhotoURL" 
+                    variant="outlined"  
+                    sx={{ marginBottom: 3 }} 
+                    value={photoURL} 
+                    onChange={(e) => setPhoto(e.target.value)} // Set the input state on change
+                />
+                <Button variant="contained" onClick={loginToApp}>Login</Button>
                 </form>
             </div>
             <div className="Register">
